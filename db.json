@@ -2,33 +2,18 @@
   "posts": [
     {
       "user_name": "Павел",
-      "user_phone": "+375(29)355-15-22",
+      "user_phone": "67657",
       "id": 1
     },
     {
-      "user_name": "Павел",
-      "user_phone": "+375(29)355-15-22",
+      "user_name": "ddqqqw",
+      "user_phone": "9889",
       "id": 2
     },
     {
       "user_name": "Павел",
-      "user_phone": "+375(29)355-15-22",
+      "user_phone": "89769",
       "id": 3
-    },
-    {
-      "user_name": "Павел",
-      "user_phone": "4",
-      "id": 4
-    },
-    {
-      "user_name": "Павел",
-      "user_phone": "56454",
-      "id": 5
-    },
-    {
-      "user_name": "Павел",
-      "user_phone": "90000009556765++--009())",
-      "id": 6
     }
   ]
 }

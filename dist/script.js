@@ -18888,9 +18888,10 @@ __webpack_require__.r(__webpack_exports__);
 
 window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_modals__WEBPACK_IMPORTED_MODULE_1__["default"])();
-  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.glazing_slider', '.glazing_block', '.active', '.glazing_content');
-  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.decoration_slider', '.no_click', '.after_click', '.decoration_content > div > div', 'focus_a');
+  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.glazing_slider', '.glazing_block', '.active', '.glazing_content', 'block');
+  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.decoration_slider', '.no_click', '.after_click', '.decoration_content > div > div', undefined, 'focus_a');
   Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.popup_calc_content .balcon_icons', '.balcon_icons_img', 'do_image_more', '.big_img > img', 'inline-block');
 });
 
 /***/ }),
@@ -19051,13 +19052,17 @@ var modals = function modals() {
   function bindModal(triggerSelector, modalSelector, closeSelector) {
     var trigger = document.querySelectorAll(triggerSelector),
         modal = document.querySelector(modalSelector),
-        close = document.querySelector(closeSelector);
+        close = document.querySelector(closeSelector),
+        modalsDialogs = document.querySelectorAll('[data-modal-dialog]');
     trigger.forEach(function (item) {
       item.addEventListener('click', function (e) {
         if (e.target) {
           e.preventDefault();
         }
 
+        modalsDialogs.forEach(function (item) {
+          item.style.display = 'none';
+        });
         modal.style.display = "block";
         document.body.style.overflow = "hidden"; // document.body.classList.add('modal-open');
 
@@ -19087,7 +19092,11 @@ var modals = function modals() {
 
   bindModal('.header .contact_us_wrap .phone_link', '.popup', '.popup_close');
   bindModal('.feedback_block a', '.popup', '.popup_close');
-  bindModal('.header_btn', '.popup_engineer', '.popup_engineer .popup_close'); // showModalByTime('.popup', 4000);
+  bindModal('.header_btn', '.popup_engineer', '.popup_engineer .popup_close');
+  bindModal('.glazing_price_btn', '.popup_calc', '.popup_calc_close');
+  bindModal('.popup_calc_button', '.popup_calc_profile', '.popup_calc_profile_close');
+  bindModal('.popup_calc_profile_button', '.popup_engineer', '.popup_calc_profile_close');
+  showModalByTime('.popup', 60000);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);
@@ -19110,18 +19119,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var tabs = function tabs(parentSelector, tabButtonSelector, activeClass, tabsContentSelector, focus) {
+var tabs = function tabs(parentSelector, tabButtonSelector, activeClass, tabsContentSelector) {
+  var display = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'block';
+  var focus = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
   var tabsButtonsParentSelector = document.querySelector(parentSelector),
       tabButton = document.querySelectorAll(tabButtonSelector),
       tabsContent = document.querySelectorAll(tabsContentSelector);
 
-  function showTabs(tabs, i) {
+  function showTabs(tabs) {
+    var i = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     tabs.forEach(function (item) {
       item.style.display = 'none';
     });
-    tabs[i].style.display = 'block';
+    tabs[i].style.display = display;
   }
 
+  showTabs(tabsContent);
   tabsButtonsParentSelector.addEventListener('click', function (e) {
     e.preventDefault();
     tabButton.forEach(function (item) {

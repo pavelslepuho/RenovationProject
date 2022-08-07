@@ -1,15 +1,17 @@
-const tabs = (parentSelector, tabButtonSelector, activeClass, tabsContentSelector, focus) => {
+const tabs = (parentSelector, tabButtonSelector, activeClass, tabsContentSelector, display = 'block', focus = 0) => {
     let tabsButtonsParentSelector = document.querySelector(parentSelector),
         tabButton = document.querySelectorAll(tabButtonSelector),
         tabsContent = document.querySelectorAll(tabsContentSelector);
 
-    function showTabs(tabs, i) {
+    function showTabs(tabs, i = 0) {
         tabs.forEach(item => {
             item.style.display= 'none';
         });
 
-        tabs[i].style.display= 'block';
+        tabs[i].style.display = display;
     }
+
+    showTabs(tabsContent);
 
     tabsButtonsParentSelector.addEventListener('click', (e) => {
         e.preventDefault();
