@@ -17,14 +17,14 @@ let changeModalState = (state) => {
 
     windowWidth.forEach((item) => {
         item.addEventListener('input', () => {
-            state.width = item.value;
+            state.width = +item.value;
             console.log(state);
         });
     });
 
     windowHeight.forEach((item) => {
         item.addEventListener('input', () => {
-            state.height = item.value;
+            state.height = +item.value;
             console.log(state);
         });
     });

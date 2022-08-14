@@ -1,6 +1,7 @@
-const forms = () => {
+const forms = (state) => {
     const form = document.querySelectorAll('form'),
-        telInputs = document.querySelectorAll('input[name="user_phone"]');
+        telInputs = document.querySelectorAll('input[name="user_phone"]'),
+        inputs = document.querySelectorAll('input');
 
     telInputs.forEach((item) => {
         item.addEventListener('input', () => {
@@ -37,11 +38,24 @@ const forms = () => {
             item.append(div);
             div.textContent = message.loading;
 
-            let data = new FormData(item),
-                jsondata = JSON.stringify(Object.fromEntries(data));
+            let data = new FormData(item);
+            let objectData = Object.fromEntries(data);
 
+            if (item.dataset.end === "popup_calc_end") {
+                objectData = Object.assign(objectData, state);
+                console.log(objectData);
+            }
+
+            let jsondata = JSON.stringify(objectData);
+            console.log(objectData);
+
+            console.log(state);
+            console.log(jsondata);
             form.forEach(item => {
                 item.reset();
+            });
+            inputs.forEach(item => {
+                item.value = '';
             });
 
             post(jsondata, 'http://localhost:3000/posts').then((result) => {
