@@ -18882,17 +18882,91 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modals */ "./src/js/modules/modals.js");
 /* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
 /* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/forms */ "./src/js/modules/forms.js");
+/* harmony import */ var _modules_changeModalState__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/changeModalState */ "./src/js/modules/changeModalState.js");
+
 
 
 
 
 window.addEventListener('DOMContentLoaded', function () {
+  var modalState = {
+    windowNumber: 0
+  };
   Object(_modules_modals__WEBPACK_IMPORTED_MODULE_1__["default"])();
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.glazing_slider', '.glazing_block', '.active', '.glazing_content', 'block');
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.decoration_slider', '.no_click', '.after_click', '.decoration_content > div > div', undefined, 'focus_a');
   Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])();
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.popup_calc_content .balcon_icons', '.balcon_icons_img', 'do_image_more', '.big_img > img', 'inline-block');
+  Object(_modules_changeModalState__WEBPACK_IMPORTED_MODULE_4__["default"])(modalState);
 });
+
+/***/ }),
+
+/***/ "./src/js/modules/changeModalState.js":
+/*!********************************************!*\
+  !*** ./src/js/modules/changeModalState.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var changeModalState = function changeModalState(state) {
+  var windowForm = document.querySelectorAll('.balcon_icons_img'),
+      windowWidth = document.querySelectorAll('#width'),
+      windowHeight = document.querySelectorAll('#height'),
+      windowType = document.querySelectorAll('#view_type'),
+      windowProfile = document.querySelectorAll('.checkbox');
+  console.log(state);
+  windowForm.forEach(function (item, i) {
+    item.addEventListener('click', function () {
+      state.windowNumber = i;
+      console.log(state);
+    });
+  });
+  windowWidth.forEach(function (item) {
+    item.addEventListener('input', function () {
+      state.width = item.value;
+      console.log(state);
+    });
+  });
+  windowHeight.forEach(function (item) {
+    item.addEventListener('input', function () {
+      state.height = item.value;
+      console.log(state);
+    });
+  });
+  windowType.forEach(function (item) {
+    item.addEventListener('change', function () {
+      state.view = item.value;
+      console.log(state);
+    });
+  });
+  windowProfile.forEach(function (item) {
+    item.addEventListener('change', function (e) {
+      e.preventDefault();
+
+      if (item.checked === true) {
+        state.temp = item.dataset.temp;
+      } else if (item.checked === false) {
+        delete state.temp;
+      }
+
+      windowProfile.forEach(function (box) {
+        if (box.dataset.temp != state.temp) {
+          box.checked = false;
+        }
+      });
+      console.log(state);
+    });
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (changeModalState);
 
 /***/ }),
 
@@ -19095,7 +19169,7 @@ var modals = function modals() {
   bindModal('.header_btn', '.popup_engineer', '.popup_engineer .popup_close');
   bindModal('.glazing_price_btn', '.popup_calc', '.popup_calc_close');
   bindModal('.popup_calc_button', '.popup_calc_profile', '.popup_calc_profile_close');
-  bindModal('.popup_calc_profile_button', '.popup_engineer', '.popup_calc_profile_close');
+  bindModal('.popup_calc_profile_button', '.popup_calc_end', '.popup_calc_profile_close');
   showModalByTime('.popup', 60000);
 };
 
