@@ -19099,8 +19099,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 var forms = function forms(state) {
   var form = document.querySelectorAll('form'),
-      telInputs = document.querySelectorAll('input[name="user_phone"]'),
-      inputs = document.querySelectorAll('input');
+      telInputs = document.querySelectorAll('input[name="user_phone"]');
   telInputs.forEach(function (item) {
     item.addEventListener('input', function () {
       item.value = item.value.replace(/[^-^(^)^+\d]/gi, '');
@@ -19171,9 +19170,6 @@ var forms = function forms(state) {
               form.forEach(function (item) {
                 item.reset();
               });
-              inputs.forEach(function (item) {
-                item.value = '';
-              });
               post(jsondata, 'http://localhost:3000/posts').then(function (result) {
                 if (_typeof(result) === 'object') {
                   div.textContent = message.success;
@@ -19186,7 +19182,7 @@ var forms = function forms(state) {
                 }, 3000);
               });
 
-            case 13:
+            case 12:
             case "end":
               return _context2.stop();
           }
@@ -19260,48 +19256,12 @@ var modals = function modals() {
     }, time);
   }
 
-  function sync() {
-    var height = document.querySelector('#height'),
-        width = document.querySelector('#width'),
-        heightV,
-        widthV,
-        windowProfile = document.querySelectorAll('.checkbox');
-    height.addEventListener('input', function () {
-      heightV = height.value;
-      checkValue();
-    });
-    width.addEventListener('input', function () {
-      widthV = width.value;
-      checkValue();
-    });
-    windowProfile.forEach(function (item) {
-      item.addEventListener('change', function () {
-        windowProfile.forEach(function (box) {
-          if (box.checked === true) {
-            bindModal('.popup_calc_profile_button', '.popup_calc_end', '.popup_calc_end_close');
-          } else {
-            bindModal(undefined, undefined, undefined);
-          }
-        });
-      });
-    });
-
-    function checkValue() {
-      if (heightV && widthV) {
-        bindModal('.popup_calc_button', '.popup_calc_profile', '.popup_calc_profile_close');
-      } else {
-        bindModal(undefined, undefined, undefined);
-      }
-    }
-  }
-
   bindModal('.header .contact_us_wrap .phone_link', '.popup', '.popup_close');
   bindModal('.feedback_block a', '.popup', '.popup_close');
   bindModal('.header_btn', '.popup_engineer', '.popup_engineer .popup_close');
   bindModal('.glazing_price_btn', '.popup_calc', '.popup_calc_close');
-  sync(); // bindModal('.popup_calc_button', '.popup_calc_profile', '.popup_calc_profile_close');
-  // bindModal('.popup_calc_profile_button', '.popup_calc_end', '.popup_calc_end_close');
-
+  bindModal('.popup_calc_button', '.popup_calc_profile', '.popup_calc_profile_close');
+  bindModal('.popup_calc_profile_button', '.popup_calc_end', '.popup_calc_end_close');
   showModalByTime('.popup', 60000);
 };
 

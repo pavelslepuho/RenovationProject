@@ -50,51 +50,12 @@ const modals = () => {
         }, time);
     }
 
-    function sync() {
-        let height = document.querySelector('#height'),
-            width = document.querySelector('#width'),
-            heightV, widthV,
-            windowProfile = document.querySelectorAll('.checkbox');
-
-        height.addEventListener('input', () => {
-            heightV = height.value;
-
-            checkValue();
-        });
-
-        width.addEventListener('input', () => {
-            widthV = width.value;
-            checkValue();
-        });
-
-        windowProfile.forEach((item) => {
-            item.addEventListener('change', () => {
-                windowProfile.forEach(box => {
-                    if (box.checked === true) {
-                        bindModal('.popup_calc_profile_button', '.popup_calc_end', '.popup_calc_end_close');
-                    } else {
-                        bindModal(undefined, undefined, undefined);
-                    }
-                });
-            });
-        });
-
-        function checkValue() {
-            if (heightV && widthV) {
-                bindModal('.popup_calc_button', '.popup_calc_profile', '.popup_calc_profile_close');
-            } else {
-                bindModal(undefined, undefined, undefined);
-            }
-        }
-    }
-
     bindModal('.header .contact_us_wrap .phone_link', '.popup', '.popup_close');
     bindModal('.feedback_block a', '.popup', '.popup_close');
     bindModal('.header_btn', '.popup_engineer', '.popup_engineer .popup_close');
     bindModal('.glazing_price_btn', '.popup_calc', '.popup_calc_close');
-    sync();
-    // bindModal('.popup_calc_button', '.popup_calc_profile', '.popup_calc_profile_close');
-    // bindModal('.popup_calc_profile_button', '.popup_calc_end', '.popup_calc_end_close');
+    bindModal('.popup_calc_button', '.popup_calc_profile', '.popup_calc_profile_close');
+    bindModal('.popup_calc_profile_button', '.popup_calc_end', '.popup_calc_end_close');
     showModalByTime('.popup', 60000);
 
 };

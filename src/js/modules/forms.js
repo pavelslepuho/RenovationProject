@@ -1,7 +1,6 @@
 const forms = (state) => {
     const form = document.querySelectorAll('form'),
-        telInputs = document.querySelectorAll('input[name="user_phone"]'),
-        inputs = document.querySelectorAll('input');
+        telInputs = document.querySelectorAll('input[name="user_phone"]');
 
     telInputs.forEach((item) => {
         item.addEventListener('input', () => {
@@ -53,9 +52,6 @@ const forms = (state) => {
             console.log(jsondata);
             form.forEach(item => {
                 item.reset();
-            });
-            inputs.forEach(item => {
-                item.value = '';
             });
 
             post(jsondata, 'http://localhost:3000/posts').then((result) => {
