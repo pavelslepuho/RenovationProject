@@ -9,6 +9,16 @@
       "user_name": "34634",
       "user_phone": "4363465765",
       "id": 2
+    },
+    {
+      "user_name": "павель",
+      "user_phone": "123",
+      "windowNumber": 1,
+      "view": "french",
+      "width": 44,
+      "height": 33,
+      "temp": "cold",
+      "id": 3
     }
   ]
 }

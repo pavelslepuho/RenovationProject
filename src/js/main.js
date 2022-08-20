@@ -3,6 +3,8 @@ import modals from './modules/modals';
 import tabs from './modules/tabs';
 import forms from './modules/forms';
 import changeModalState from './modules/changeModalState';
+import timer from './modules/timer';
+import images from './modules/images';
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -17,4 +19,6 @@ window.addEventListener('DOMContentLoaded', () => {
     forms(modalState);
     tabs('.popup_calc_content .balcon_icons', '.balcon_icons_img', 'do_image_more', '.big_img > img', 'inline-block');
     changeModalState(modalState);
+    timer('2022-08-18T00:00:00');
+    images();
 });
